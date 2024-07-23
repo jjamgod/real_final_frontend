@@ -12,6 +12,7 @@ function Airchat({ closeModal }) {
             try {
                 const response = await axios.get('/flight-status?page=1&perPage=10');
                 setFlightData(response.data.data);
+                console.log(flightData)
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching flight data:', error);
@@ -39,16 +40,18 @@ function Airchat({ closeModal }) {
                             <th>출발지</th>
                             <th>도착지</th>
                             <th>도착 상태</th>
+                            <th>날짜</th>
                         </tr>
                         </thead>
                         <tbody>
                         {flightData.map((flight, index) => (
                             <tr key={index}>
-                                <td>{flight.AIRLINE_ENGLISH}</td>
+                                <td>{flight.AIRLINE_KOREAN}</td>
                                 <td>{flight.AIR_FLN}</td>
-                                <td>{flight.BOARDING_ENG} ({flight.STD})</td>
-                                <td>{flight.ARRIVED_ENG} ({flight.ETD})</td>
-                                <td>{flight.RMK_ENG}</td>
+                                <td>{flight.BOARDING_KOR} ({flight.STD})</td>
+                                <td>{flight.ARRIVED_KOR} ({flight.ETD})</td>
+                                <td>{flight.RMK_KOR}</td>
+                                <td>{flight.FLIGHT_DATE}</td>
                             </tr>
                         ))}
                         </tbody>

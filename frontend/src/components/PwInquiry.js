@@ -9,6 +9,7 @@ const PwInquiry = () => {
     const [responseMessage, setResponseMessage] = useState('');
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
+    const [userName, setUserName] = useState('');
 
     const handleUserIdChange = (e) => {
         setUserId(e.target.value);
@@ -64,6 +65,11 @@ const PwInquiry = () => {
             }
         }
     };
+    const maskUserName = (name) => {
+        if (name.length <= 2) return name; // 이름이 2글자 이하일 경우 마스킹하지 않음
+        return name.slice(0, 2) + '*'.repeat(name.length - 2); // 처음 두 글자 + 나머지 문자는 *로 대체
+    };
+    const maskedUserName = maskUserName(userEmail);
 
 
     return (
@@ -114,7 +120,7 @@ const PwInquiry = () => {
             <div className={isVisible ? 'pi-Pwinquiry-popup-frame' : 'pi-hidden'}>
                 <div className="pi-Pwinquiry-popup">
                     <div className="pi-Pwinquiry-popup-logo">
-                        <div className="pi-Pwinquiry-popup-a-irport">AIrport</div>
+                        <img src="/images/chatbot/AIport.png" alt="AIrport 로고" className="id-home-logo"/>
                     </div>
                     <div className="pi-Pwinquiry-popup-explain">
                         <div className="pi-Pwinquiry-popup-offer">
@@ -122,7 +128,7 @@ const PwInquiry = () => {
                                 <span className="pi-Pwinquiry-popup-offer-text">
                                     임시 비밀번호가<br/>
                                 </span>
-                                <span className="pi-Pwinquiry-popup-offer-userid">{userEmail}<br/></span>
+                                <span className="pi-Pwinquiry-popup-offer-userid">{maskedUserName}<br/></span>
                                 <span className="pi-Pwinquiry-popup-offer-text">이메일로 전송되었습니다.</span>
                             </span>
                         </div>

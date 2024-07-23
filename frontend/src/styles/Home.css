@@ -68,7 +68,7 @@ button {
     top:400px;
     left: 200px;
     overflow: hidden;
-    z-index: 9999; /* 높은 값으로 설정하여 화면에서 가장 위로 표시 */
+    z-index: 1; /* 높은 값으로 설정하여 화면에서 가장 위로 표시 */
     flex-direction: row;
     gap: 10px;
     align-items: center;

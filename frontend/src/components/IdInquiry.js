@@ -114,8 +114,8 @@ const IdInquiry = () => {
 
             <div className={isVisible ? 'pi-IdInquiry-popup-frame' : 'pi-hidden'}>
                 <div className="pi-IdInquiry-popup">
-                    <div className="pi-IdInquiry-popup-logo">
-                        <div className="pi-IdInquiry-popup-a-irport">AIrport</div>
+                    <div className="pi-Pwinquiry-popup-logo">
+                        <img src="/images/chatbot/AIport.png" alt="AIrport 로고" className="id-home-logo"/>
                     </div>
                     <div className="pi-IdInquiry-popup-explain">
                         {foundUserId ? (

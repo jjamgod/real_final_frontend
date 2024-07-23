@@ -11,16 +11,17 @@ function Parking({ closeModal }) {
         const fetchParkingData = async () => {
             try {
                 const response = await axios.get('/parking-fees');
-                const rawData = response.data.parking_fees;
-                const data = Object.keys(rawData).map((key) => ({
-                    type: key.replace(/_/g, ' '),
-                    ...rawData[key]
-                }));
+                const rawData = response.data.parking_fees.cargo_terminal_parking;
+                console.log(rawData)
+
+                // Extract the objects from rawData
+                const data = Object.values(rawData).filter(item => item.type === '대형' || item.type === '소형');
+
                 setParkingData(data);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching parking data:', error);
-                setError(error.message);
+                setError('참잘했어요');
                 setLoading(false);
             }
         };
@@ -28,11 +29,7 @@ function Parking({ closeModal }) {
         fetchParkingData();
     }, []);
 
-    useEffect(() => {
-        console.log(parkingData);
-    }, [parkingData]);
 
-    const filteredData = parkingData.filter(item => item.type === '대형' || item.type === '소형');
 
     return (
         <div className="park-modal-overlay" onClick={closeModal}>
@@ -41,7 +38,7 @@ function Parking({ closeModal }) {
                 <h1>주차 요금 안내</h1>
                 {loading && <p className="loading-message">Loading...</p>}
                 {error && <p className="error-message">Error: {error}</p>}
-                {filteredData.length > 0 && (
+                {parkingData.length > 0 && (
                     <table className="parking-fees-table">
                         <thead>
                         <tr>
@@ -56,7 +53,7 @@ function Parking({ closeModal }) {
                         </tr>
                         </thead>
                         <tbody>
-                        {filteredData.map((item, index) => (
+                        {parkingData.map((item, index) => (
                             <tr key={index}>
                                 <td>{item.type}</td>
                                 <td>{item.base_fee ? `${item.base_fee} 원` : 'N/A'}</td>
