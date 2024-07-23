@@ -100,6 +100,12 @@
     left: 0px;
     top: 94px;
     overflow: auto; /* 스크롤이 필요할 때 자동으로 생성됨 */
+
+
+    display: flex;
+    flex-direction: column;
+
+
 }
 
 .chat-log {
@@ -108,10 +114,16 @@
     padding: 10px; /* 내부 여백 추가 */
     height: 100%;
     box-sizing: border-box; /* 패딩을 포함하여 높이 계산 */
+
+    flex: 1;
+    overflow-y: auto;
+}
+.chat-log::-webkit-scrollbar{
+    display: none;
 }
 
 .chat-message.user {
-    align-self: flex-start; /* 왼쪽으로 정렬 */
+    align-self: flex-end; /* 오른쪽으로 정렬 */
     background-color: #1A237E;
     color: #ffffff;
     border-radius: 24px 0px 24px 24px;
@@ -123,7 +135,7 @@
 }
 
 .chat-message.bot {
-    align-self: flex-end; /* 오른쪽으로 정렬 */
+    align-self: flex-start; /* 왼쪽으로 정렬 */
     border-radius: 24px 24px 24px 0px;
     background-color: #ffffff;
     color: #1A237E;
@@ -149,4 +161,6 @@
     to {
         transform: rotate(360deg);
     }
+
 }
+

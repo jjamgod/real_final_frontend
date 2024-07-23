@@ -1,10 +1,10 @@
 import '../styles/Chat.css';
-// import '../styles/ChatTest.css';
 import { Link, useNavigate } from 'react-router-dom';
-import React, { useState, useRef  } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import NavigationBar from "../components/NavigationBar";
 import SideNavBtn from '../components/SideNavBtn';
+
 
 function Chat() {
     const [messages, setMessages] = useState([]);
@@ -12,6 +12,7 @@ function Chat() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const inputRef = useRef(null);
+    const chatLogRef = useRef(null); // chat-log에 대한 레퍼런스 생성
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -49,16 +50,25 @@ function Chat() {
         }
     };
 
+    useEffect(() => {
+        if (chatLogRef.current) {
+            chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
+        }
+    }, [messages]); // messages 배열이 업데이트될 때마다 스크롤을 조정
+
     return (
         <div className="chatbot-background">
             <NavigationBar/>
             <SideNavBtn/>
             <div className="chatbot-frame">
                 <div className="chatbot-header">
-                    <img className="chatbot-header-logo" src="/public/images/chatbot/AIport.png"/>
+                    <img className="chatbot-header-logo" src="/images/chatbot/AIport.png"/>
+
+
+
                 </div>
                 <div className="chatbot-content">
-                    <div className="chat-log">
+                    <div className="chat-log" ref={chatLogRef}>
                         {messages.map((msg, index) => (
                             <div key={index} className={`chat-message ${msg.sender}`}>
                                 <p>{msg.text}</p>
@@ -82,7 +92,7 @@ function Chat() {
                             placeholder="메세지를 입력해주세요"
                             onKeyDown={handleKeyDown}
                         />
-                        <button onClick={handleSubmit} >
+                        <button onClick={handleSubmit}>
                             <img
                                 className="chatbot-footer-user-msg-send-img"
                                 src="/public/images/chatbot/chatbot-footer-user-send.png"
