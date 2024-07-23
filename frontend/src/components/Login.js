@@ -21,7 +21,7 @@ const Login = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
-
+    const [shouldVerifyCaptcha, setShouldVerifyCaptcha] = useState(true);
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -33,7 +33,7 @@ const Login = () => {
         const user = {
             userID: emailOrUsername,
             password: password,
-            captchaResponse: captchaValue
+            captchaResponse: shouldVerifyCaptcha ? captchaValue : undefined,
         };
 
         axios.post('/auth/login', qs.stringify(user), {
@@ -51,8 +51,16 @@ const Login = () => {
             });
     };
 
+    // const [captchaValue, setCaptchaValue] = useState(null);
     const onCaptchaChange = (value) => {
-        setCaptchaValue(value);
+        if (shouldVerifyCaptcha) {
+            if (value) {
+                setCaptchaValue(value);
+            } else {
+                console.error("Invalid CAPTCHA value");
+                setCaptchaValue(null);
+            }
+        }
     };
 
     useEffect(() => {
