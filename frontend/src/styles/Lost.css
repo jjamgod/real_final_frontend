@@ -11,9 +11,22 @@
     overflow-y: hidden; /* y축 스크롤 표시로 변경 */
     display: flex; /* Flexbox 사용 */
     justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
+    top: 80px;
 }
-
+.lost-top-img-frame{
+    width: 1520px;
+    height: 360px;
+    overflow: hidden; /* 필요에 따라 넘치는 부분 숨기기 */
+    position: relative; /* 자식 요소의 위치를 기준으로 삼기 위해 상대 위치 지정 */
+}
+.lost-top-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 div의 크기에 맞게 조정되도록 설정 */
+    position: absolute; /* 이미지의 위치를 절대 위치로 설정 */
+    top: 0;
+    left: 0;
+}
 .lost-content {
     display: flex;
     flex-direction: column;

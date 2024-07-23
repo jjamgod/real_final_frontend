@@ -436,6 +436,9 @@ function Management() {
         <div className="ad-div">
             <NavigationBar/>
             <SideNavBtn/>
+            <div className="ad-top-img-frame">
+                <img className="ad-top-img" src="/images/testimages/intro_01.jpg"/>
+            </div>
             <div className="ad-entire">
                 <div className="ad-top">
                     <div className="ad-top-container">

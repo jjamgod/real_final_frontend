@@ -222,9 +222,13 @@ function Lost() {
         <div className="lost">
             <NavigationBar/>
             <SideNavBtn/>
+            <div className="lost-top-img-frame">
+                <img className="lost-top-img" src="/images/testimages/intro_01.jpg"/>
+            </div>
             <div className="lost-content">
                 <div className="lost-top">
                     <div className="lost-top-shadow">
+
                         <div className="lost-top-main">
                             <div className="lost-top-btn-content">
                                 <div className="lost-top-btn-title"># 가장 많이 찾는 분실물 태그</div>
@@ -360,7 +364,8 @@ function Lost() {
                                             <p><strong>이미지:</strong></p>
                                             <p>Image Name: {selectedItem.imgFilename}</p>
                                             {imageUrl ? (
-                                                <img src={imageUrl} alt={selectedItem.imgFilename} className="popup-image"/>
+                                                <img src={imageUrl} alt={selectedItem.imgFilename}
+                                                     className="popup-image"/>
                                             ) : (
                                                 <p>이미지를 불러오는 중입니다...</p>
                                             )}

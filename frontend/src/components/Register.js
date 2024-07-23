@@ -101,6 +101,7 @@ function Register() {
             <SideNavBtn />
             <div className="lost-register-banner">
                 <div className="lost-register-banner-title">분실물 등록</div>
+                <img className="register-top-img" src="/images/testimages/intro_02.jpg"/>
             </div>
             <div className="bread-crumb">
                 <div className="bread-crumb-02">

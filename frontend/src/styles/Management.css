@@ -11,7 +11,7 @@
     overflow-y: hidden; /* y축 스크롤 숨김 */
     display: flex; /* Flexbox 사용 */
     justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
+    top:80px;
 }
 .ad-entire {
     display: flex;
@@ -1340,4 +1340,18 @@ body.modal-open {
     font-size: 24px; /* 아이콘의 크기를 통일 */
     vertical-align: middle; /* 아이콘이 세로로 정렬되도록 */
     cursor: pointer;
+}
+.ad-top-img-frame{
+    width: 1520px;
+    height: 360px;
+    overflow: hidden; /* 필요에 따라 넘치는 부분 숨기기 */
+    position: relative; /* 자식 요소의 위치를 기준으로 삼기 위해 상대 위치 지정 */
+}
+.ad-top-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 div의 크기에 맞게 조정되도록 설정 */
+    position: absolute; /* 이미지의 위치를 절대 위치로 설정 */
+    top: 0;
+    left: 0;
 }
