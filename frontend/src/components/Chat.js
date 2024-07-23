@@ -17,6 +17,7 @@ function Chat() {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             handleSubmit();
+            setQuestion('');
             if (inputRef.current) {
                 inputRef.current.focus();
             }
@@ -24,6 +25,7 @@ function Chat() {
     };
 
     const handleSubmit = async () => {
+        setQuestion('');
         if (question.trim() === '') return; // 빈 입력 방지
         const userMessage = { sender: 'user', text: question };
         setMessages([...messages, userMessage]);
@@ -95,7 +97,7 @@ function Chat() {
                         <button onClick={handleSubmit}>
                             <img
                                 className="chatbot-footer-user-msg-send-img"
-                                src="/public/images/chatbot/chatbot-footer-user-send.png"
+                                src="/images/chatbot/chatbot-footer-user-send.png"
                             />
                         </button>
                     </div>

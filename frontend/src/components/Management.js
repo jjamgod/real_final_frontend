@@ -697,7 +697,7 @@ function Management() {
                                                             />
                                                         </label>
                                                         <label>
-                                                            이미지:
+                                                            이미지를 반드시 업로드 해 주세요
                                                             <input
                                                                 type="file"
                                                                 accept="image/*"

@@ -109,8 +109,18 @@ const Signup = ({ agreed }) => {
     };
 
     const onCaptchaChange = (value) => {
-        setCaptchaValue(value);
+        try {
+            if (value) {
+                setCaptchaValue(value);
+            } else {
+                throw new Error("Invalid CAPTCHA value");
+            }
+        } catch (error) {
+            console.error("ReCAPTCHA Error:", error);
+            setCaptchaValue(null); // 오류 발생 시 캡차 값 초기화
+        }
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

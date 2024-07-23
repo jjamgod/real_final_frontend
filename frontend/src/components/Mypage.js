@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/Mypage.css';
 import NavigationBar from "./NavigationBar";
 
+import { useNavigate }  from "react-router-dom";
 // 모달 컴포넌트 정의
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -23,6 +24,8 @@ function Mypage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const navigate = useNavigate();
+
     // 비밀번호 변경 폼 상태
     const [userID, setUserID] = useState('');
     const [oldPassword, setOldPassword] = useState('');
@@ -42,8 +45,7 @@ function Mypage() {
                 setName(nameResponse.data);
                 setLoading(false);
             } catch (error) {
-                setError('정보를 가져오는 중 에러가 발생했습니다.');
-                setLoading(false);
+                navigate('/Error505');
             }
         };
 
