@@ -3,20 +3,19 @@ import '../styles/Chat.css';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useRef  } from 'react';
 import axios from 'axios';
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 import SideNavBtn from '../components/SideNavBtn';
-
 
 function Chat() {
     const [messages, setMessages] = useState([]);
     const [question, setQuestion] = useState('');
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const inputRef = useRef(null);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             handleSubmit();
-            setQuestion('');
             if (inputRef.current) {
                 inputRef.current.focus();
             }
@@ -24,12 +23,10 @@ function Chat() {
     };
 
     const handleSubmit = async () => {
-        setQuestion('');
         if (question.trim() === '') return; // 빈 입력 방지
         const userMessage = { sender: 'user', text: question };
         setMessages([...messages, userMessage]);
-
-
+        setLoading(true);
 
         try {
             const result = await axios.post('/ask', { question: question }, {
@@ -44,6 +41,7 @@ function Chat() {
             setError(error);
             console.error('Error asking the question:', error);
         } finally {
+            setLoading(false);
             setQuestion(''); // 질문 입력 후 초기화
         }
         if (inputRef.current) {
@@ -57,11 +55,7 @@ function Chat() {
             <SideNavBtn/>
             <div className="chatbot-frame">
                 <div className="chatbot-header">
-
-                    <img className="chatbot-header-logo" src="/images/chatbot/AIport.png"/>
-
-
-
+                    <img className="chatbot-header-logo" src="/public/images/chatbot/AIport.png"/>
                 </div>
                 <div className="chatbot-content">
                     <div className="chat-log">
@@ -70,6 +64,11 @@ function Chat() {
                                 <p>{msg.text}</p>
                             </div>
                         ))}
+                        {loading && (
+                            <div className="chat-message bot">
+                                <div className="loading-animation"></div>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="chatbot-footer">
@@ -86,16 +85,13 @@ function Chat() {
                         <button onClick={handleSubmit} >
                             <img
                                 className="chatbot-footer-user-msg-send-img"
-                                src="/images/chatbot/chatbot-footer-user-send.png"
+                                src="/public/images/chatbot/chatbot-footer-user-send.png"
                             />
                         </button>
-
                     </div>
                 </div>
             </div>
         </div>
-
-
     );
 }
 

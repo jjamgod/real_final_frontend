@@ -1,7 +1,7 @@
 import '../styles/PwInquiry.css';
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const PwInquiry = () => {
     const [userId, setUserId] = useState('');
@@ -70,13 +70,15 @@ const PwInquiry = () => {
         <div className="pi-Pwinquiry">
             <div className="pi-id-inquiry-content">
                 <div className="pi-logo">
-                    <div className="pi-a-irport">AIrport</div>
+                    <Link to="/">
+                        <img src="/images/chatbot/AIport.png" alt="AIrport 로고" className="id-home-logo" />
+                    </Link>
                 </div>
                 <div className="pi-find-id-title">
                     <div className="pi-div3">비밀번호 찾기</div>
                     <div className="pi-line-32"></div>
                     <div className="pi-div4">
-                        회원님의 이름과 아이디를 입력해주세요
+                        회원님의 이름과 아이디를 입력하시면 임시 비밀번호가 제공됩니다.
                     </div>
                 </div>
                 <div className="pi-find-id-UserId">
@@ -106,7 +108,7 @@ const PwInquiry = () => {
                     </div>
                 </div>
                 <button onClick={handleSubmit} className="pi-find-id-btn">
-                    <div className="pi-div">아이디 찾기</div>
+                    <div className="pi-div">비밀번호 찾기</div>
                 </button>
             </div>
             <div className={isVisible ? 'pi-Pwinquiry-popup-frame' : 'pi-hidden'}>
