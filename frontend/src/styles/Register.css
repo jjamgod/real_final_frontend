@@ -482,9 +482,8 @@
 }
 
 .submit-btn:hover {
-    color: #1a237e;
-    background: #ffffff; /* 호버 시 배경색 변경 */
-    border: #1a237e;
+    color: #ffffff;
+    background: #0056b3; /* 호버 시 배경색 변경 */
 }
 
 .bread-crumb,
