@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Mypage.css';
 import NavigationBar from "./NavigationBar";
-import { useNavigate }  from "react-router-dom";
 
 // 모달 컴포넌트 정의
 const Modal = ({ isOpen, onClose, children }) => {
@@ -23,7 +22,6 @@ function Mypage() {
     const [name, setName] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
 
     // 비밀번호 변경 폼 상태
     const [userID, setUserID] = useState('');
@@ -44,7 +42,8 @@ function Mypage() {
                 setName(nameResponse.data);
                 setLoading(false);
             } catch (error) {
-                navigate('/Error505');
+                setError('정보를 가져오는 중 에러가 발생했습니다.');
+                setLoading(false);
             }
         };
 
@@ -67,9 +66,13 @@ function Mypage() {
             setPasswordSuccess(response.data);
             setPasswordError(null);
             setIsModalOpen(false);
+            alert('비밀번호 변경 성공!'); // 비밀번호 변경 성공 메시지
         } catch (error) {
             console.log(error.response); // 오류 메시지 확인
-            if (error.response) {
+            if (error.response && error.response.status === 400) {
+                setPasswordError('아이디를 잘못 입력했습니다!');
+                alert('아이디를 잘못 입력했습니다!');
+            } else if (error.response) {
                 setPasswordError(error.response.data);
             } else {
                 setPasswordError('비밀번호 변경 중 오류가 발생했습니다.');

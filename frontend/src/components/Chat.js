@@ -2,9 +2,8 @@ import '../styles/Chat.css';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 import SideNavBtn from '../components/SideNavBtn';
-
 
 
 function Chat() {
@@ -18,7 +17,6 @@ function Chat() {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             handleSubmit();
-            setQuestion('');
             if (inputRef.current) {
                 inputRef.current.focus();
             }
@@ -26,7 +24,6 @@ function Chat() {
     };
 
     const handleSubmit = async () => {
-        setQuestion('');
         if (question.trim() === '') return; // 빈 입력 방지
         const userMessage = { sender: 'user', text: question };
         setMessages([...messages, userMessage]);
@@ -66,6 +63,9 @@ function Chat() {
             <div className="chatbot-frame">
                 <div className="chatbot-header">
                     <img className="chatbot-header-logo" src="/images/chatbot/AIport.png"/>
+
+
+
                 </div>
                 <div className="chatbot-content">
                     <div className="chat-log" ref={chatLogRef}>
@@ -95,7 +95,7 @@ function Chat() {
                         <button onClick={handleSubmit}>
                             <img
                                 className="chatbot-footer-user-msg-send-img"
-                                src="/images/chatbot/chatbot-footer-user-send.png"
+                                src="/public/images/chatbot/chatbot-footer-user-send.png"
                             />
                         </button>
                     </div>
