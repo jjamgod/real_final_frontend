@@ -23,6 +23,7 @@ import OAuthRedirect from "./utils/OAuthRedirect"
 import UserProfile from "./utils/UserProfile"
 import ServiceTest from "./components/ServiceTest"
 import OAuthCallback from './utils/OAuthCallback';
+import Error505 from './components/Error505';
 
 function App() {
     const [agreed, setAgreed] = useState(false);
@@ -67,6 +68,7 @@ function App() {
                 <Route path="/UserProfile" element={<UserProfile/>}/>
                 <Route path="/auth-callback" element={<OAuthCallback />} />
                 <Route path="/ServiceTest" element={<ServiceTest/>}/>
+                <Route path="/Error505" element={<Error505/>}/>
             </Routes>
         </Router>
     );

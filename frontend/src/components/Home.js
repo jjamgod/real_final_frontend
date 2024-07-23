@@ -77,9 +77,6 @@ function Home() {
                 </div>
 
             </div>
-            <div className="info">
-
-            </div>
         </div>
 
 

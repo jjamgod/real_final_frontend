@@ -1,23 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Mypage.css';
 import NavigationBar from "./NavigationBar";
 import { useNavigate }  from "react-router-dom";
 
 // 모달 컴포넌트 정의
-const Modal = ({isOpen, onClose, children}) => {
+const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
 
-    const handleBackdropClick = (e) => {
-        if (e.target === e.currentTarget) {
-            onClose();
-        }
-    };
-
     return (
-        <div className="mp-modal-overlay" onClick={handleBackdropClick}>
-            <div className="mp-modal-content">
-                <button className="mp-modal-close" onClick={onClose}>X</button>
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <button className="modal-close" onClick={onClose}></button>
                 {children}
             </div>
         </div>
@@ -84,6 +78,8 @@ function Mypage() {
         }
     };
 
+
+
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
@@ -99,6 +95,7 @@ function Mypage() {
     if (error) {
         return <p>{error}</p>;
     }
+
 
     return (
         <div className="mypage">
@@ -125,54 +122,62 @@ function Mypage() {
                 </div>
             </div>
 
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-                <form onSubmit={handlePasswordChange}>
-                    <div className="mypage-pw-popup">
-                        <button className="mp-popup-close-box" onClick={handleCloseModal}>X</button>
-                        <img src="/images/chatbot/AIport.png" alt="AIrport 로고" className="mp-home-logo"/>
-                        <div className="mypage-pw-popup-text">비밀번호 변경</div>
-                        <div>
-                            {/*아이디*/}
-                            <input
-                                placeholder="아이디"
-                                className="mypage-pw-popup-name"
-                                type="text"
-                                id="userID"
-                                value={userID}
-                                onChange={(e) => setUserID(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            {/*이전*/}
-                            <input
-                                placeholder="이전 비밀번호"
-                                className="mypage-pw-popup-current"
-                                type="password"
-                                id="oldPassword"
-                                value={oldPassword}
-                                onChange={(e) => setOldPassword(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            {/*신규*/}
-                            <input
-                                placeholder="변경할 비밀번호"
-                                className="mypage-pw-popup-change"
-                                type="password"
-                                id="newPassword"
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <button className="mypage-pw-popup-btn" type="submit">비밀번호 변경</button>
-                    </div>
-                </form>
+            <Modal isOpen={isModalOpen}>
 
-                {passwordSuccess && <p>{passwordSuccess}</p>}
-                {passwordError && <p>{passwordError}</p>}
+                <div className="mypage-pw">
+
+                    <form onSubmit={handlePasswordChange}>
+                        <div className="mypage-pw-popup">
+                            <dutton className="popup-close-box" onClick={handleCloseModal}>닫기</dutton>
+                            <div className="mypage-logo">
+                                <div className="mypage-a-irport">AIrport</div>
+                            </div>
+
+                            <div className="mypage-pw-popup-text">비밀번호 변경</div>
+
+                            <div>
+                                {/*아이디*/}
+                                <input
+                                    placeholder="아이디"
+                                    className="mypage-pw-popup-name"
+                                    type="text"
+                                    id="userID"
+                                    value={userID}
+                                    onChange={(e) => setUserID(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                {/*이전*/}
+                                <input
+                                    placeholder="이전 비밀번호"
+                                    className="mypage-pw-popup-current"
+                                    type="password"
+                                    id="oldPassword"
+                                    value={oldPassword}
+                                    onChange={(e) => setOldPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                {/*신규*/}
+                                <input
+                                    placeholder="변경할 비밀번호"
+                                    className="mypage-pw-popup-change"
+                                    type="password"
+                                    id="newPassword"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <button className="mypage-pw-popup-btn" type="submit">비밀번호 변경</button>
+                        </div>
+                    </form>
+
+                    {passwordSuccess && <p>{passwordSuccess}</p>}
+                    {passwordError && <p>{passwordError}</p>}
+                </div>
             </Modal>
         </div>
     );
