@@ -32,6 +32,7 @@
     top: 542px;
 }
 .pi-find-id-btn:hover{
+    background-color: #0056b3;
     cursor: pointer;
 }
 
@@ -214,13 +215,19 @@
     justify-content: center;
 }
 
-.pi-logo {
-    background: #1a237e;
+.id-logo {
     width: 250px;
     height: 80px;
     position: absolute;
     left: calc(50% - 125px);
     top: 0px;
+}
+
+.id-home-logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .pi-a-irport {

@@ -65,7 +65,7 @@ const Signup = ({ agreed }) => {
     };
 
     const handlePasswordBlur = () => {
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{10,16}$/;
         if (password1 && !passwordRegex.test(password1)) {
             setPasswordError('비밀번호는 최소 10-16자리 대/소/특수문자/숫자 중 2가지 이상을 포함해야 합니다');
         } else {
@@ -147,6 +147,7 @@ const Signup = ({ agreed }) => {
 
     const handleCloseModal = () => {
         setShowModal(false);
+        navigate('/Login'); // 모달창을 닫으면 로그인 화면으로 이동
     };
 
     const handleBackdropClick = (e) => {

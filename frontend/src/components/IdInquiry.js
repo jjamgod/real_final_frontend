@@ -1,7 +1,7 @@
 import '../styles/IdInquiry.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const IdInquiry = () => {
     const [userName, setUserName] = useState('');
@@ -69,9 +69,11 @@ const IdInquiry = () => {
     return (
         <div className="pi-idinquiry">
             <div className="pi-id-inquiry-content">
-                <div className="pi-logo">
-                    <div className="pi-a-irport">AIrport</div>
-                </div>
+                <div className="id-logo">
+                    <Link to="/">
+                        <img src="/images/chatbot/AIport.png" alt="AIrport 로고" className="id-home-logo" />
+                    </Link>
+                    </div>
                 <div className="pi-find-id-title">
                     <div className="pi-div3">아이디 찾기</div>
                     <div className="pi-line-32"></div>
@@ -87,7 +89,7 @@ const IdInquiry = () => {
                             type="text"
                             name="username"
                             value={userName}
-                            placeholder="회원 이름"
+                            placeholder="이름 입력"
                             onChange={handleUserNameChange}
                         />
                     </div>
