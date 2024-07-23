@@ -632,6 +632,15 @@
     top: 0px;
     cursor: pointer;
 }
+
+.ad-main-search-btn:hover {
+    background-color: #0056b3;
+}
+
+.ad-main-search-img:hover {
+    background-color: #0056b3;
+}
+
 .ad-main-search-txt {
     color: #ffffff;
     text-align: left;
@@ -1087,6 +1096,11 @@
     position: relative;
     white-space: nowrap;
 }
+
+.ad-regi-btn:hover {
+    background-color: #0056b3;
+}
+
 .frame-983 {
     display: flex;
     flex-direction: row;

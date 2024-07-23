@@ -585,12 +585,12 @@ function Management() {
                         </div>
                     </div>
                     <div className="ad-main-search-container2">
-                        <div className="ad-main-search-btn" onClick={handleSearch}>
+                        <button className="ad-main-search-btn" onClick={handleSearch}>
                             <div className="ad-main-search-txt">검색하기</div>
                             <div className="ad-main-search-img">
                                 <img className="ad-main-search-icon" src="/images/search.png"/>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <div className="ad-main-item-cate">
