@@ -182,6 +182,7 @@ const Signup = ({ agreed }) => {
 
     const handleCloseModal = () => {
         setShowModal(false);
+        window.location.reload();
         navigate('/Login'); // 모달창을 닫으면 로그인 화면으로 이동
     };
 

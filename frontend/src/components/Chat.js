@@ -71,6 +71,9 @@ function Chat() {
                 </div>
                 <div className="chatbot-content">
                     <div className="chat-log" ref={chatLogRef}>
+                        <div className='chat-message-greeting'>
+                            안녕하세요, 기내 반입물품을 판별해주는 챗봇 AIrport Bot입니다! 원하시는 물품을 말씀하시면 도움 드리겠습니다.
+                        </div>
                         {messages.map((msg, index) => (
                             <div key={index} className={`chat-message ${msg.sender}`}>
                                 <p>{msg.text}</p>
