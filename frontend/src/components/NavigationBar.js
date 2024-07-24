@@ -142,7 +142,9 @@ function NavigationBar() {
                                 <a href='/Items'>반입물품안내</a>
                             </div>
                         </div>
-                        <div className="dark-nav-bar-slide-customer-3">
+                        <div className="dark-nav-bar-slide-customer-3"
+                             onMouseEnter={handleMouseEnter}
+                             onMouseLeave={handleMouseLeave}>
                             <div className="dark-nav-bar-slide-text">
                                 <a href='/Lost'>공항분실물검색</a>
                             </div>
@@ -161,7 +163,9 @@ function NavigationBar() {
                                 <Link to='/Management'>분실물게시판관리</Link>
                             </div>
                         </div>
-                        <div className="dark-nav-bar-slide-staff-3">
+                        <div className="dark-nav-bar-slide-staff-3"
+                             onMouseEnter={handleMouseEnter}
+                             onMouseLeave={handleMouseLeave}>
                             <div className="dark-nav-bar-slide-text">
                                 <Link to='/Taxi'>택시승강장관리</Link>
                             </div>

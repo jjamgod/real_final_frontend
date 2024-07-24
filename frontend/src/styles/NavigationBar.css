@@ -322,7 +322,7 @@
 }
 
 .dark-nav-bar-frame {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 1);
     width: 1920px   ;
     height: 80px;
     position: relative;
