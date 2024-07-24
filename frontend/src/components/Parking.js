@@ -56,13 +56,13 @@ function Parking({ closeModal }) {
                         {parkingData.map((item, index) => (
                             <tr key={index}>
                                 <td>{item.type}</td>
-                                <td>{item.base_fee ? `${item.base_fee} 원` : 'N/A'}</td>
-                                <td>{item.base_time || 'N/A'}</td>
-                                <td>{item.hourly_fee ? `${item.hourly_fee} 원` : 'N/A'}</td>
-                                <td>{item.additional_fee ? `${item.additional_fee} 원` : 'N/A'}</td>
-                                <td>{item.additional_time || 'N/A'}</td>
-                                <td>{item.daily_fee ? `${item.daily_fee} 원` : 'N/A'}</td>
-                                <td>{item.free_time || 'N/A'}</td>
+                                <td>{item.base_fee ? `${item.base_fee} 원` : '-'}</td>
+                                <td>{item.base_time || '-'}</td>
+                                <td>{item.hourly_fee ? `${item.hourly_fee} 원` : '-'}</td>
+                                <td>{item.additional_fee ? `${item.additional_fee} 원` : '-'}</td>
+                                <td>{item.additional_time || '-'}</td>
+                                <td>{item.daily_fee ? `${item.daily_fee} 원` : '-'}</td>
+                                <td>{item.free_time || '-'}</td>
                             </tr>
                         ))}
                         </tbody>

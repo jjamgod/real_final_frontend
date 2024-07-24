@@ -17,6 +17,10 @@ const Login = () => {
     const handleEmailOrUsernameChange = (e) => {
         setEmailOrUsername(e.target.value);
     };
+    const axiosInstance = axios.create({
+        baseURL: 'http://localhost:3000',
+        timeout: 10000000000000000000000000000000 // 10초
+    });
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -36,7 +40,7 @@ const Login = () => {
             captchaResponse: shouldVerifyCaptcha ? captchaValue : undefined,
         };
 
-        axios.post('/auth/login', qs.stringify(user), {
+        axiosInstance.post('/auth/login', qs.stringify(user), {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         })
             .then(response => {

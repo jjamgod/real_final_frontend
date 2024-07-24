@@ -68,18 +68,23 @@ function ServiceIntro() {
     };
 
     // 컴포넌트가 마운트될 때 API 호출
+    const roundTimeToNearest5Minutes = (date) => {
+        const coeff = 1000 * 60 * 5; // 5분을 밀리초로 변환
+        return new Date(Math.floor(date.getTime() / coeff) * coeff);
+    };
+
+    // 컴포넌트가 마운트될 때 API 호출
     useEffect(() => {
         fetchCheckInTime();
         fetchSecurityTime();
-    }, []); // 빈 배열을 전달하여 한 번만 실행되도록 설정
-
-
+    }, []);
 
     // 갱신 버튼 클릭 시 체크인 및 보안 검색 시간 갱신
     const handleRefreshClick = async () => {
         await Promise.all([fetchCheckInTime(), fetchSecurityTime()]);
-        setCurrentTime(new Date()); // 현재 시각 갱신
+        setCurrentTime(roundTimeToNearest5Minutes(new Date()));
     };
+    const [currentTime, setCurrentTime] = useState(roundTimeToNearest5Minutes(new Date()));
 
     const getImagePath = (number) => {
         if (number >= 0 && number <= 20) {
@@ -97,7 +102,7 @@ function ServiceIntro() {
         setIsNextScreen(!isNextScreen); // isNextScreen 상태를 토글하여 화면 전환
     };
 
-    const [currentTime, setCurrentTime] = useState(new Date());
+
 
     // useEffect(() => {
     //     const intervalId = setInterval(() => {
