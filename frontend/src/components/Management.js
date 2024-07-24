@@ -433,356 +433,363 @@ function Management() {
     }
 
     return (
-        <div className="ad-div">
-            <NavigationBar/>
-            <SideNavBtn/>
-            <div className="ad-top-img-frame">
-                <img className="ad-top-img" src="/images/testimages/intro_01.jpg"/>
-            </div>
-            <div className="ad-entire">
-                <div className="ad-top">
-                    <div className="ad-top-container">
-                        <div className="ad-top-shadow">
-                            <div className="ad-top-click-part">
-                                <div className="ad-top-fast-title">빠른검색</div>
-                                <div className="ad-top-divide"></div>
-                                <div className="ad-top-cal-name">
-                                    <div className="ad-top-cal">
-                                        <div className="ad-top-cal-frame">
-                                            <div className="ad-top-placeholder">
-                                                {filterStartDate ? filterStartDate.toLocaleDateString() : '시작 날짜'}
-                                            </div>
-                                            <div className="ad-top-cal-img"
-                                                 onClick={handleFilterStartDateCalendarClick}>
-                                                <img className="calendar" src="/images/calendar.png"/>
-                                            </div>
-                                        </div>
-                                        {showFilterStartDateCalendar && (
-                                            <div ref={filterCalendarRef} className="manage-calendar-popup">
-                                                <Calendar
-                                                    onChange={handleFilterStartDateChange}
-                                                    value={filterStartDate}
-                                                    selectRange={false}
-                                                />
-                                            </div>
-                                        )}
-                                        <div className="ad-top-ing">~</div>
-                                        <div className="ad-top-cal-frame">
-                                            <div className="ad-top-placeholder">
-                                                {filterEndDate ? filterEndDate.toLocaleDateString() : '종료 날짜'}
-                                            </div>
-                                            <div className="ad-top-cal-img" onClick={handleFilterEndDateCalendarClick}>
-                                                <img className="calendar2" src="/images/calendar.png"/>
-                                            </div>
-                                        </div>
-                                        {showFilterEndDateCalendar && (
-                                            <div ref={filterCalendarRef} className="manage-calendar-popup">
-                                                <Calendar
-                                                    onChange={handleFilterEndDateChange}
-                                                    value={filterEndDate}
-                                                    selectRange={false}
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="ad-top-name-ref">
-                                        <div className="ad-top-name-frame">
-                                            <input
-                                                type="text"
-                                                placeholder="검색"
-                                                onChange={(e) => setFilterItemName(e.target.value)}
-                                                className="ad-top-name-placeholder"
-                                            />
-                                            <img
-                                                className="ad-top-search-img"
-                                                src="/images/search.png"
-                                                onClick={handleNewFilter}
-                                            />
-                                        </div>
-                                        <img
-                                            className="ad-top-refresh"
-                                            src="/images/refresh_white.png"
-                                            onClick={handleResetFast}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="ad-title">분실물 게시판 관리</div>
-                    </div>
+        <div>
+            <div className="manage-nav-container"></div>
+            <div className="ad-div">
+                <div className="management-nav-container"></div>
+                <NavigationBar/>
+                <SideNavBtn/>
+                <div className="ad-top-img-frame">
+                    <img className="ad-top-img" src="/images/testimages/intro_05.jpg    "/>
                 </div>
-                <div className="ad-main-search-container">
-                    <div className="ad-main-search-title">
-                        <div className="ad-div2">습득물 상세 검색</div>
-                        <img className="chevron-down" src="/images/refresh.png" onClick={handleResetAll}/>
-                    </div>
-                    <div className="ad-main-search-frame">
-                        <div className="ad-main-cate">
-                            <input
-                                type="text"
-                                className="ad-main-cate-placeholder"
-                                placeholder="분류"
-                                value={searchTermCategory}
-                                onChange={(e) => setSearchTermCategory(e.target.value)}
-                            />
-                            <div className="ad-main-cate-btn">
-                                <img className="pencil-01" src="/images/pencil.png"/>
-                            </div>
-                        </div>
-                        <div className="ad-main-name">
-                            <input
-                                type="text"
-                                className="ad-main-name-placeholder"
-                                placeholder="분실물 이름"
-                                value={searchTermName}
-                                onChange={(e) => setSearchTermName(e.target.value)}
-                            />
-                            <div className="ad-main-name-btn">
-                                <img className="pencil-012" src="/images/pencil.png"/>
-                            </div>
-                        </div>
-                        <div className="ad-main-cal-container">
-                            <div className="ad-main-cal-frame">
-                                <div className="ad-main-cal-placeholder">
-                                    {startDate ? startDate.toLocaleDateString() : '시작 날짜'}
-                                </div>
-                                <div className="calendar-frame" onClick={handleStartDateCalendarClick}>
-                                    <img className="calendar2" src="/images/calendar.png" alt="calendar"/>
-                                </div>
-                                {showStartDateCalendar && (
-                                    <div className="manage-calendar-popup2" ref={calendarRef}>
-                                        <Calendar onChange={handleStartDateChange} value={startDate}/>
-                                    </div>
-                                )}
-                            </div>
-                            <div className="ad-main-ing">~</div>
-                            <div className="ad-main-cal-frame">
-                                <div className="ad-main-cal-placeholder">
-                                    {endDate ? endDate.toLocaleDateString() : '종료 날짜'}
-                                </div>
-                                <div className="calendar-frame" onClick={handleEndDateCalendarClick}>
-                                    <img className="calendar2" src="/images/calendar.png" alt="calendar"/>
-                                </div>
-                                {showEndDateCalendar && (
-                                    <div className="manage-calendar-popup2" ref={calendarRef}>
-                                        <Calendar onChange={handleEndDateChange} value={endDate}/>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="ad-main-place-person">
-                            <div className="ad-main-place-person-frame">
-                                <div className="ad-main-place">
-                                    <input
-                                        type="text"
-                                        className="ad-main-cate-placeholder"
-                                        placeholder="습득 장소"
-                                        value={searchTermPlace}
-                                        onChange={(e) => setSearchTermPlace(e.target.value)}
-                                    />
-                                    <div className="ad-main-place-btn">
-                                        <img className="pencil-013" src="/images/pencil.png"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="ad-main-search-container2">
-                        <button className="ad-main-search-btn" onClick={handleSearch}>
-                            <div className="ad-main-search-txt">검색하기</div>
-                            <div className="ad-main-search-img">
-                                <img className="ad-main-search-icon" src="/images/search.png"/>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                <div className="ad-main-item-cate">
-                    <div className="ad-main-cate2">
-                        <div className="ad-main-cate-index-box">
-                            <div className="ad-main-cate-index">등록번호</div>
-                            <div className="ad-main-cate-dot"></div>
-                        </div>
-                        <div className="ad-main-cate-cate-box">
-                            <div className="ad-main-cate-cate">분류</div>
-                            <div className="ad-main-cate-dot"></div>
-                        </div>
-                        <div className="ad-main-cate-name-box">
-                            <div className="ad-main-cate-name">습득물 이름</div>
-                            <div className="ad-main-cate-dot"></div>
-                        </div>
-                        <div className="ad-main-cate-place-box">
-                            <div className="ad-main-cate-place">습득장소</div>
-                            <div className="ad-main-cate-dot"></div>
-                        </div>
-                        <div className="ad-main-cate-date-box">
-                            <div className="ad-main-cate-date">습득일</div>
-                            <div className="ad-main-cate-dot"></div>
-                        </div>
-                        <div className="ad-main-cate-admin-box">
-                            <div className="ad-main-cate-admin">게시글 관리</div>
-                        </div>
-                    </div>
-                    <div className="ad-item-container">
-                        <div className="lost-main-frame-items">
-                            {displayedItems.map((item, index) => (
-                                <div key={index} className="frame-item">
-                                    <div className="ad-main-cate-index-box" onClick={() => handlePopupOpen(item)}>
-                                        <div className="ad-main-cate-index">{item.lostID}</div>
-                                    </div>
-                                    <div className="ad-main-cate-cate-box" onClick={() => handlePopupOpen(item)}>
-                                        <div className="cate-box-text">{item.category}</div>
-                                    </div>
-                                    <div className="ad-main-cate-name-box" onClick={() => handlePopupOpen(item)}>
-                                        <div className="name-box-text">{item.lostName}</div>
-                                    </div>
-                                    <div className="ad-main-cate-place-box" onClick={() => handlePopupOpen(item)}>
-                                        <div className="get-place-box">
-                                            <img
-                                                className="marker-pin-01"
-                                                src="/images/marker-pin-01.png"
-                                                alt="marker pin"
-                                            />
-                                            <div className="place-box-text">{item.location}</div>
-                                        </div>
-                                    </div>
-                                    <div className="ad-main-cate-date-box" onClick={() => handlePopupOpen(item)}>
-                                        <div className="cate-date-box">
-                                            <div className="date-text">{item.date}</div>
-                                        </div>
-                                    </div>
-                                    <div className="ad-main-cate-admin-box">
-                                        <div className="frame-983">
-                                            <div className="frame-981" onClick={() => handleSessionToggle(item.lostID)}>
-                                                <div className="smbtn">수정</div>
-                                            </div>
-                                        </div>
-                                        {openSessions[item.lostID] && (
-                                            <div className="session-overlay">
-                                                <div className="session-content">
-                                                    <form onSubmit={(e) => handleEditSubmit(e, item.lostID)}>
-                                                        <label>
-                                                            분류:
-                                                            <input
-                                                                type="text"
-                                                                value={editItem.category || ''}
-                                                                onChange={(e) => handleEditChange('category', e.target.value)}
-                                                            />
-                                                        </label>
-                                                        <label>
-                                                            이름:
-                                                            <input
-                                                                type="text"
-                                                                value={editItem.lostName || ''}
-                                                                onChange={(e) => handleEditChange('lostName', e.target.value)}
-                                                            />
-                                                        </label>
-                                                        <label>
-                                                            장소:
-                                                            <input
-                                                                type="text"
-                                                                value={editItem.location || ''}
-                                                                onChange={(e) => handleEditChange('location', e.target.value)}
-                                                            />
-                                                        </label>
-                                                        <label>
-                                                            날짜 및 시간:
-                                                            <input
-                                                                type="datetime-local"
-                                                                value={editItem.date ? new Date(editItem.date).toISOString().slice(0, 16) : ''}
-                                                                onChange={(e) => handleEditChange('date', e.target.value)}
-                                                            />
-                                                        </label>
-                                                        <label>
-                                                            설명:
-                                                            <textarea
-                                                                value={editItem.description || ''}
-                                                                onChange={(e) => handleEditChange('description', e.target.value)}
-                                                            />
-                                                        </label>
-                                                        <label>
-                                                            이미지를 반드시 업로드 해 주세요
-                                                            <input
-                                                                type="file"
-                                                                accept="image/*"
-                                                                onChange={handleFileChange}
-                                                            />
-                                                            {imageUrl && <img src={imageUrl} alt="현재 이미지"
-                                                                              className="session-image"/>}
-                                                        </label>
-
-                                                        <button type="submit">저장</button>
-                                                    </form>
-                                                    <button onClick={() => handleDeleteItem(item.lostID)}>삭제</button>
-                                                    <button className="session-close-button"
-                                                            onClick={() => handleSessionToggle(item.lostID)}>
-                                                        x
-                                                    </button>
+                <div className="ad-entire">
+                    <div className="ad-top">
+                        <div className="ad-top-container">
+                            <div className="ad-top-shadow">
+                                <div className="ad-top-click-part">
+                                    <div className="ad-top-fast-title">빠른검색</div>
+                                    <div className="ad-top-divide"></div>
+                                    <div className="ad-top-cal-name">
+                                        <div className="ad-top-cal">
+                                            <div className="ad-top-cal-frame">
+                                                <div className="ad-top-placeholder">
+                                                    {filterStartDate ? filterStartDate.toLocaleDateString() : '시작 날짜'}
+                                                </div>
+                                                <div className="ad-top-cal-img"
+                                                     onClick={handleFilterStartDateCalendarClick}>
+                                                    <img className="calendar" src="/images/calendar.png"/>
                                                 </div>
                                             </div>
-                                        )}
+                                            {showFilterStartDateCalendar && (
+                                                <div ref={filterCalendarRef} className="manage-calendar-popup">
+                                                    <Calendar
+                                                        onChange={handleFilterStartDateChange}
+                                                        value={filterStartDate}
+                                                        selectRange={false}
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="ad-top-ing">~</div>
+                                            <div className="ad-top-cal-frame">
+                                                <div className="ad-top-placeholder">
+                                                    {filterEndDate ? filterEndDate.toLocaleDateString() : '종료 날짜'}
+                                                </div>
+                                                <div className="ad-top-cal-img"
+                                                     onClick={handleFilterEndDateCalendarClick}>
+                                                    <img className="calendar2" src="/images/calendar.png"/>
+                                                </div>
+                                            </div>
+                                            {showFilterEndDateCalendar && (
+                                                <div ref={filterCalendarRef} className="manage-calendar-popup">
+                                                    <Calendar
+                                                        onChange={handleFilterEndDateChange}
+                                                        value={filterEndDate}
+                                                        selectRange={false}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="ad-top-name-ref">
+                                            <div className="ad-top-name-frame">
+                                                <input
+                                                    type="text"
+                                                    placeholder="검색"
+                                                    onChange={(e) => setFilterItemName(e.target.value)}
+                                                    className="ad-top-name-placeholder"
+                                                />
+                                                <img
+                                                    className="ad-top-search-img"
+                                                    src="/images/search.png"
+                                                    onClick={handleNewFilter}
+                                                />
+                                            </div>
+                                            <img
+                                                className="ad-top-refresh"
+                                                src="/images/refresh_white.png"
+                                                onClick={handleResetFast}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            ))}
+                            </div>
+                            <div className="ad-title">분실물 게시판 관리</div>
                         </div>
                     </div>
-                    <div className="ad-regi-line">
-                        <div className="ad-regi-container">
-                            <a href="/Register" className="ad-regi-btn">
-                                <div className="ad-regi-txt">분실물 등록</div>
-                            </a>
+                    <div className="ad-main-search-container">
+                        <div className="ad-main-search-title">
+                            <div className="ad-div2">습득물 상세 검색</div>
+                            <img className="chevron-down" src="/images/refresh.png" onClick={handleResetAll}/>
                         </div>
-                    </div>
-                </div>
-                <div className="management-page">
-                    <div className="management-left-arrow">
-                        <ChevronDoubleLeft className="management-left-double" onClick={handleFirstPage}/>
-                        <ChevronCompactLeft className="management-left" onClick={handlePrevPage}/>
-                    </div>
-                    {getPageNumbers().map((pageNumber, index) => (
-                        typeof pageNumber === 'number' ? (
-                            <button key={index}
-                                    className={`page-button ${currentPage === pageNumber ? 'active-page' : ''}`}
-                                    onClick={() => handlePageClick(pageNumber)}>
-                                {pageNumber}
+                        <div className="ad-main-search-frame">
+                            <div className="ad-main-cate">
+                                <input
+                                    type="text"
+                                    className="ad-main-cate-placeholder"
+                                    placeholder="분류"
+                                    value={searchTermCategory}
+                                    onChange={(e) => setSearchTermCategory(e.target.value)}
+                                />
+                                <div className="ad-main-cate-btn">
+                                    <img className="pencil-01" src="/images/pencil.png"/>
+                                </div>
+                            </div>
+                            <div className="ad-main-name">
+                                <input
+                                    type="text"
+                                    className="ad-main-name-placeholder"
+                                    placeholder="분실물 이름"
+                                    value={searchTermName}
+                                    onChange={(e) => setSearchTermName(e.target.value)}
+                                />
+                                <div className="ad-main-name-btn">
+                                    <img className="pencil-012" src="/images/pencil.png"/>
+                                </div>
+                            </div>
+                            <div className="ad-main-cal-container">
+                                <div className="ad-main-cal-frame">
+                                    <div className="ad-main-cal-placeholder">
+                                        {startDate ? startDate.toLocaleDateString() : '시작 날짜'}
+                                    </div>
+                                    <div className="calendar-frame" onClick={handleStartDateCalendarClick}>
+                                        <img className="calendar2" src="/images/calendar.png" alt="calendar"/>
+                                    </div>
+                                    {showStartDateCalendar && (
+                                        <div className="manage-calendar-popup2" ref={calendarRef}>
+                                            <Calendar onChange={handleStartDateChange} value={startDate}/>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="ad-main-ing">~</div>
+                                <div className="ad-main-cal-frame">
+                                    <div className="ad-main-cal-placeholder">
+                                        {endDate ? endDate.toLocaleDateString() : '종료 날짜'}
+                                    </div>
+                                    <div className="calendar-frame" onClick={handleEndDateCalendarClick}>
+                                        <img className="calendar2" src="/images/calendar.png" alt="calendar"/>
+                                    </div>
+                                    {showEndDateCalendar && (
+                                        <div className="manage-calendar-popup2" ref={calendarRef}>
+                                            <Calendar onChange={handleEndDateChange} value={endDate}/>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="ad-main-place-person">
+                                <div className="ad-main-place-person-frame">
+                                    <div className="ad-main-place">
+                                        <input
+                                            type="text"
+                                            className="ad-main-cate-placeholder"
+                                            placeholder="습득 장소"
+                                            value={searchTermPlace}
+                                            onChange={(e) => setSearchTermPlace(e.target.value)}
+                                        />
+                                        <div className="ad-main-place-btn">
+                                            <img className="pencil-013" src="/images/pencil.png"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="ad-main-search-container2">
+                            <button className="ad-main-search-btn" onClick={handleSearch}>
+                                <div className="ad-main-search-txt">검색하기</div>
+                                <div className="ad-main-search-img">
+                                    <img className="ad-main-search-icon" src="/images/search.png"/>
+                                </div>
                             </button>
-                        ) : (
-                            <span key={index} className="ellipsis">...</span>
-                        )
-                    ))}
-                    <div className="management-right-arrow">
-                        <ChevronCompactRight className="management-right" onClick={handleNextPage}/>
-                        <ChevronDoubleRight className="management-right-double" onClick={handleLastPage}/>
+                        </div>
+                    </div>
+                    <div className="ad-main-item-cate">
+                        <div className="ad-main-cate2">
+                            <div className="ad-main-cate-index-box">
+                                <div className="ad-main-cate-index">등록번호</div>
+                                <div className="ad-main-cate-dot"></div>
+                            </div>
+                            <div className="ad-main-cate-cate-box">
+                                <div className="ad-main-cate-cate">분류</div>
+                                <div className="ad-main-cate-dot"></div>
+                            </div>
+                            <div className="ad-main-cate-name-box">
+                                <div className="ad-main-cate-name">습득물 이름</div>
+                                <div className="ad-main-cate-dot"></div>
+                            </div>
+                            <div className="ad-main-cate-place-box">
+                                <div className="ad-main-cate-place">습득장소</div>
+                                <div className="ad-main-cate-dot"></div>
+                            </div>
+                            <div className="ad-main-cate-date-box">
+                                <div className="ad-main-cate-date">습득일</div>
+                                <div className="ad-main-cate-dot"></div>
+                            </div>
+                            <div className="ad-main-cate-admin-box">
+                                <div className="ad-main-cate-admin">게시글 관리</div>
+                            </div>
+                        </div>
+                        <div className="ad-item-container">
+                            <div className="lost-main-frame-items">
+                                {displayedItems.map((item, index) => (
+                                    <div key={index} className="frame-item">
+                                        <div className="ad-main-cate-index-box" onClick={() => handlePopupOpen(item)}>
+                                            <div className="ad-main-cate-index">{item.lostID}</div>
+                                        </div>
+                                        <div className="ad-main-cate-cate-box" onClick={() => handlePopupOpen(item)}>
+                                            <div className="cate-box-text">{item.category}</div>
+                                        </div>
+                                        <div className="ad-main-cate-name-box" onClick={() => handlePopupOpen(item)}>
+                                            <div className="name-box-text">{item.lostName}</div>
+                                        </div>
+                                        <div className="ad-main-cate-place-box" onClick={() => handlePopupOpen(item)}>
+                                            <div className="get-place-box">
+                                                <img
+                                                    className="marker-pin-01"
+                                                    src="/images/marker-pin-01.png"
+                                                    alt="marker pin"
+                                                />
+                                                <div className="place-box-text">{item.location}</div>
+                                            </div>
+                                        </div>
+                                        <div className="ad-main-cate-date-box" onClick={() => handlePopupOpen(item)}>
+                                            <div className="cate-date-box">
+                                                <div className="date-text">{item.date}</div>
+                                            </div>
+                                        </div>
+                                        <div className="ad-main-cate-admin-box">
+                                            <div className="frame-983">
+                                                <div className="frame-981"
+                                                     onClick={() => handleSessionToggle(item.lostID)}>
+                                                    <div className="smbtn">수정</div>
+                                                </div>
+                                            </div>
+                                            {openSessions[item.lostID] && (
+                                                <div className="session-overlay">
+                                                    <div className="session-content">
+                                                        <form onSubmit={(e) => handleEditSubmit(e, item.lostID)}>
+                                                            <label>
+                                                                분류:
+                                                                <input
+                                                                    type="text"
+                                                                    value={editItem.category || ''}
+                                                                    onChange={(e) => handleEditChange('category', e.target.value)}
+                                                                />
+                                                            </label>
+                                                            <label>
+                                                                이름:
+                                                                <input
+                                                                    type="text"
+                                                                    value={editItem.lostName || ''}
+                                                                    onChange={(e) => handleEditChange('lostName', e.target.value)}
+                                                                />
+                                                            </label>
+                                                            <label>
+                                                                장소:
+                                                                <input
+                                                                    type="text"
+                                                                    value={editItem.location || ''}
+                                                                    onChange={(e) => handleEditChange('location', e.target.value)}
+                                                                />
+                                                            </label>
+                                                            <label>
+                                                                날짜 및 시간:
+                                                                <input
+                                                                    type="datetime-local"
+                                                                    value={editItem.date ? new Date(editItem.date).toISOString().slice(0, 16) : ''}
+                                                                    onChange={(e) => handleEditChange('date', e.target.value)}
+                                                                />
+                                                            </label>
+                                                            <label>
+                                                                설명:
+                                                                <textarea
+                                                                    value={editItem.description || ''}
+                                                                    onChange={(e) => handleEditChange('description', e.target.value)}
+                                                                />
+                                                            </label>
+                                                            <label>
+                                                                이미지를 반드시 업로드 해 주세요
+                                                                <input
+                                                                    type="file"
+                                                                    accept="image/*"
+                                                                    onChange={handleFileChange}
+                                                                />
+                                                                {imageUrl && <img src={imageUrl} alt="현재 이미지"
+                                                                                  className="session-image"/>}
+                                                            </label>
+
+                                                            <button type="submit">저장</button>
+                                                        </form>
+                                                        <button onClick={() => handleDeleteItem(item.lostID)}>삭제
+                                                        </button>
+                                                        <button className="session-close-button"
+                                                                onClick={() => handleSessionToggle(item.lostID)}>
+                                                            x
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="ad-regi-line">
+                            <div className="ad-regi-container">
+                                <a href="/Register" className="ad-regi-btn">
+                                    <div className="ad-regi-txt">분실물 등록</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="management-page">
+                        <div className="management-left-arrow">
+                            <ChevronDoubleLeft className="management-left-double" onClick={handleFirstPage}/>
+                            <ChevronCompactLeft className="management-left" onClick={handlePrevPage}/>
+                        </div>
+                        {getPageNumbers().map((pageNumber, index) => (
+                            typeof pageNumber === 'number' ? (
+                                <button key={index}
+                                        className={`page-button ${currentPage === pageNumber ? 'active-page' : ''}`}
+                                        onClick={() => handlePageClick(pageNumber)}>
+                                    {pageNumber}
+                                </button>
+                            ) : (
+                                <span key={index} className="ellipsis">...</span>
+                            )
+                        ))}
+                        <div className="management-right-arrow">
+                            <ChevronCompactRight className="management-right" onClick={handleNextPage}/>
+                            <ChevronDoubleRight className="management-right-double" onClick={handleLastPage}/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {showPopup && selectedItem && (
-                <div className="popup-overlay" onClick={handlePopupClose}>
-                    <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="popup-close" onClick={handlePopupClose}>
-                            X
-                        </button>
-                        <h2>상세 정보</h2>
-                        <p><strong>등록번호:</strong> {selectedItem.lostID}</p>
-                        <p><strong>분류:</strong> {selectedItem.category}</p>
-                        <p><strong>이름:</strong> {selectedItem.lostName}</p>
-                        <p><strong>장소:</strong> {selectedItem.location}</p>
-                        <p><strong>날짜:</strong> {selectedItem.date}</p>
-                        <p><strong>세부사항:</strong></p>
-                        <pre>
+                {showPopup && selectedItem && (
+                    <div className="popup-overlay" onClick={handlePopupClose}>
+                        <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+                            <button className="popup-close" onClick={handlePopupClose}>
+                                X
+                            </button>
+                            <h2>상세 정보</h2>
+                            <p><strong>등록번호:</strong> {selectedItem.lostID}</p>
+                            <p><strong>분류:</strong> {selectedItem.category}</p>
+                            <p><strong>이름:</strong> {selectedItem.lostName}</p>
+                            <p><strong>장소:</strong> {selectedItem.location}</p>
+                            <p><strong>날짜:</strong> {selectedItem.date}</p>
+                            <p><strong>세부사항:</strong></p>
+                            <pre>
                 {selectedItem.description}
             </pre>
-                        <p><strong>이미지:</strong></p>
-                        <p>Image Name: {selectedItem.imgFilename}</p>
-                        {imageUrl ? (
-                            <img src={imageUrl} alt={selectedItem.imgFilename} className="popup-image"/>
-                        ) : (
-                            <p>이미지를 불러오는 중입니다...</p>
-                        )}
+                            <p><strong>이미지:</strong></p>
+                            <p>Image Name: {selectedItem.imgFilename}</p>
+                            {imageUrl ? (
+                                <img src={imageUrl} alt={selectedItem.imgFilename} className="popup-image"/>
+                            ) : (
+                                <p>이미지를 불러오는 중입니다...</p>
+                            )}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
 
+            </div>
         </div>
 
     );

@@ -12,6 +12,7 @@
     display: flex; /* Flexbox 사용 */
     justify-content: center; /* 가로 중앙 정렬 */
     top:80px;
+
 }
 .ad-entire {
     display: flex;
@@ -44,7 +45,6 @@
     overflow: hidden;
 }
 .ad-top-shadow {
-    background: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 360px;
     position: absolute;
@@ -274,8 +274,8 @@
     line-height: 40px;
     font-weight: 700;
     position: absolute;
-    left: calc(50% - 189px);
-    top: calc(45% - 100px);
+    left: 420px;
+    top: 100px;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -1360,6 +1360,7 @@ body.modal-open {
     height: 360px;
     overflow: hidden; /* 필요에 따라 넘치는 부분 숨기기 */
     position: relative; /* 자식 요소의 위치를 기준으로 삼기 위해 상대 위치 지정 */
+    filter: brightness(50%);
 }
 .ad-top-img{
     width: 100%;
@@ -1368,4 +1369,14 @@ body.modal-open {
     position: absolute; /* 이미지의 위치를 절대 위치로 설정 */
     top: 0;
     left: 0;
+}
+
+.manage-nav-container{
+    width: 1920px;
+    height: 80px;
+    position: absolute;
+    left: calc(50% - 960px);
+    top: 0px;
+    overflow: hidden;
+    background-color: black;
 }
