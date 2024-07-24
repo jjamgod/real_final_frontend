@@ -144,8 +144,8 @@ function Taxi() {
                                 <div className="taxi-effect-text">Effects : On</div>
                             </div>
                             <div className="taxi-video">
-                                {/*<video className="taxi-video-player" src="/images/uploaded_video.mp4" autoPlay muted*/}
-                                {/*       loop></video>*/}
+                                <video className="taxi-video-player" src="/images/uploaded_video.mp4" autoPlay muted
+                                       loop></video>
                                 <video className="taxi-video-player"
                                        ref={videoRef} width="640" height="360" controls>
                                     <source src="/videos/taxi/uploaded_video.mp4" type="video/mp4"/>

@@ -17,11 +17,15 @@ const Login = () => {
     const handleEmailOrUsernameChange = (e) => {
         setEmailOrUsername(e.target.value);
     };
+    const axiosInstance = axios.create({
+        baseURL: 'http://localhost:3000',
+        timeout: 10000000000000000000000000000000 // 10초
+    });
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
-
+    const [shouldVerifyCaptcha, setShouldVerifyCaptcha] = useState(true);
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -33,10 +37,10 @@ const Login = () => {
         const user = {
             userID: emailOrUsername,
             password: password,
-            captchaResponse: captchaValue
+            captchaResponse: shouldVerifyCaptcha ? captchaValue : undefined,
         };
 
-        axios.post('/auth/login', qs.stringify(user), {
+        axiosInstance.post('/auth/login', qs.stringify(user), {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         })
             .then(response => {
@@ -51,8 +55,16 @@ const Login = () => {
             });
     };
 
+    // const [captchaValue, setCaptchaValue] = useState(null);
     const onCaptchaChange = (value) => {
-        setCaptchaValue(value);
+        if (shouldVerifyCaptcha) {
+            if (value) {
+                setCaptchaValue(value);
+            } else {
+                console.error("Invalid CAPTCHA value");
+                setCaptchaValue(null);
+            }
+        }
     };
 
     useEffect(() => {

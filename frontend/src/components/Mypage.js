@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/Mypage.css';
 import NavigationBar from "./NavigationBar";
 
+import { useNavigate }  from "react-router-dom";
 // 모달 컴포넌트 정의
 const Modal = ({isOpen, onClose, children}) => {
     if (!isOpen) return null;
@@ -24,6 +25,8 @@ const Modal = ({isOpen, onClose, children}) => {
 };
 
 function Mypage() {
+
+    const navigate = useNavigate();
     const [email, setEmail] = useState(null);
     const [name, setName] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -48,8 +51,8 @@ function Mypage() {
                 setName(nameResponse.data);
                 setLoading(false);
             } catch (error) {
-                setError('정보를 가져오는 중 에러가 발생했습니다.');
-                setLoading(false);
+
+                navigate('/Error505');
             }
         };
 

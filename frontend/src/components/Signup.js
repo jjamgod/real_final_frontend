@@ -107,20 +107,39 @@ const Signup = ({ agreed }) => {
             setPhoneError('');
         }
     };
-
-    const onCaptchaChange = (value) => {
-        try {
+    const onCaptchaChange = async (value) => {
+        if (shouldVerifyCaptcha) {
             if (value) {
-                setCaptchaValue(value);
+                try {
+                    const response = await axios.post('https://www.google.com/recaptcha/api/siteverify', {
+                        secret: '6LfLHBAqAAAAAD-46Lw950kEOv0MGDKrFlwR6xYq', // 여기에 실제 비밀 키를 사용하세요.
+                        response: value,
+                    });
+
+                    if (response.data.success) {
+                        setCaptchaValue(value);
+                    } else {
+                        console.log(response.data)
+                        console.error("Invalid CAPTCHA value");
+                        setCaptchaValue(null);
+                    }
+                } catch (error) {
+                    console.error("ReCAPTCHA Verification Error:", error);
+                    setCaptchaValue(null);
+                }
             } else {
-                throw new Error("Invalid CAPTCHA value");
+                console.error("Invalid CAPTCHA value");
+                setCaptchaValue(null);
             }
-        } catch (error) {
-            console.error("ReCAPTCHA Error:", error);
-            setCaptchaValue(null); // 오류 발생 시 캡차 값 초기화
         }
     };
 
+
+    const [shouldVerifyCaptcha, setShouldVerifyCaptcha] = useState(true);
+    const axiosInstance = axios.create({
+        baseURL: 'http://localhost:3000',
+        timeout: 10000000000000000000000000000000 // 10초
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -143,20 +162,27 @@ const Signup = ({ agreed }) => {
             email: email,
             password: password1,
             phoneNumStr: phone,
-            captchaResponse: captchaValue
+            captchaResponse: shouldVerifyCaptcha ? captchaValue : undefined,
         };
 
         try {
-            const response = await axios.post('/auth/signup', user);
+            const response = await axiosInstance.post('/auth/signup', user);
             console.log('Success:', response.data);
             setShowModal(true); // 회원가입 성공 시 모달 표시
         } catch (error) {
-            console.error('Error:', error);
+            if (error.code === 'ECONNABORTED') {
+                console.error('Timeout Error:', error);
+                alert('요청이 시간 초과되었습니다. 다시 시도해주세요.');
+            } else {
+                console.error('Error:', error);
+                alert('중복된 아이디나 이메일이 있습니다!');
+            }
         }
     };
 
     const handleCloseModal = () => {
         setShowModal(false);
+        window.location.reload();
         navigate('/Login'); // 모달창을 닫으면 로그인 화면으로 이동
     };
 
@@ -280,7 +306,7 @@ const Signup = ({ agreed }) => {
 
                     <div className="form-group">
                         <ReCAPTCHA
-                            sitekey="6LcX7hIqAAAAANwXNsGWClj7CFdauq4p-x4e_i7e" // 여기서 YOUR_SITE_KEY를 Google에서 받은 사이트 키로 변경하세요.
+                            sitekey="6LfLHBAqAAAAAEtE5Ps3PqiRuTYDizZQDdCriHW2" // 여기서 YOUR_SITE_KEY를 Google에서 받은 사이트 키로 변경하세요.
                             onChange={onCaptchaChange}
                         />
                     </div>
